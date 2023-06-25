@@ -1,0 +1,27 @@
+.container {
+    background-image: url('/hero-bg.svg');
+    background-size: 35rem;
+    background-repeat: no-repeat;
+    background-position: right -1rem top 3rem;
+  }
+  
+
+  @media (max-width: 920px) {
+    .container {
+      background-position: right -18rem top 3rem;
+    }
+  }
+
+@media (max-width: 640px) {
+  .container {
+    background-size: 20rem;
+    background-position: right -12rem top 3rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .container {
+    background-size: 20rem;
+    background-position: right -15rem top 3rem;
+  }
+}

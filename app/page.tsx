@@ -1,113 +1,87 @@
-import Image from 'next/image'
+import Image from "next/image";
+import style from "./home.module.css";
+import Link from "next/link";
+import Button from "@/components/Button";
 
-export default function Home() {
+
+type ProductType = {
+  _id: string;
+  name: string;
+  image: string;
+  description?: string;
+  price: number;
+  quantity: number;
+  featured?: boolean;
+  extras?: string
+}[]
+
+
+const getProducts = async (): Promise<ProductType> => {
+  const res = await fetch("http:localhost:3000/api/products")
+  const data = res.json();
+  return data
+}
+
+export default async function Home() {
+  const products = await getProducts()
+  // console.log(products)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+    <main className={`${style.container}`}>
+      <div className="w-12/12 container mx-auto border border-transparent sm:w-10/12">
+        {/* HERO */}
+        <section
+          id="hero"
+          className="mt-16 overflow-x-hidden md:mt-32 xl:mt-40"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <div className="flex flex-col gap-8">
+            <h1
+              className="min-[306px]-text-3xl text-2xl font-[900] leading-tight text-main-text min-[366px]:text-4xl md:w-8/12 xl:w-7/12 xl:text-6xl"
+              id="tagline"
+            >
+              Where Shopping Perfection Begins.
+            </h1>
+            <Link href="/products">
+              <Button text="Shop Now" className="px-8" />
+            </Link>
+          </div>
+          <Image
+            src="/hero-img-4.png"
+            alt="Hero image"
+            width={700}
+            height={700}
+            className="absolute right-20 top-[18rem] h-[200px] w-[200px] max-[1238px]:right-10  min-[502px]:right-[2rem] min-[502px]:top-80 min-[506px]:top-[14rem] min-[506px]:h-[400px] min-[506px]:w-[400px] lg:right-80 min-[1234px]:right-10 min-[1234px]:top-0 min-[1234px]:h-[700px]  min-[1234px]:w-[700px] min-[1235px]:right-[0rem] min-[1440px]:right-40 min-[1440px]:top-20"
+          />
+        </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* FEATURED PRODUCTS */}
+        <section
+          id="featured-products"
+          className="mt-52 space-y-14 min-[506px]:mt-96 min-[1340px]:mt-72"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          <h1 className="text-xl font-[700] text-main-text min-[366px]:text-3xl">
+            Featured Products
+          </h1>
+          <div className="grid justify-center gap-12 min-[550px]:grid-cols-2 min-[940px]:grid-cols-3 min-[1640px]:grid-cols-4">
+            {products.map((product) => product.featured && (
+              <Link key={product._id} href={`/products/${product._id}`}>
+                <div className="flex flex-col gap-4 items-center">  
+                  <div 
+                    className="relative h-52 w-52 border-[6px] border-neutral-100 xl:h-72 xl:w-72"
+                  >
+                    <div className="w-full h-full">
+                      <Image src={`/products/${product.image}`} fill={true} style={{objectFit: "cover"}} alt={product.name} />
+                      <span className="absolute right-[-3rem] top-[-3rem] flex h-[80px] w-[80px] scale-50 items-center justify-center rounded-full border border-dashed border-main-text bg-brand-secondary p-8 text-xl font-bold min-[280px]:scale-75 min-[366px]:scale-90 lg:h-[120px] lg:w-[120px]">
+                        {`$${product.price}`}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <h1 className="text-lg lg:text-xl text-center">{ product.name }</h1>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
-  )
+  );
 }
