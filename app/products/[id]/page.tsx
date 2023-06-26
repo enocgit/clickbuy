@@ -10,7 +10,7 @@ type ProductType = {
 
 
 const getProduct = async (id: string): Promise<ProductType> => {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`)
+  const res = await fetch(`/api/products/${id}`)
   const data = res.json()
   return data
 }

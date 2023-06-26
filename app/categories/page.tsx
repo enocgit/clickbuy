@@ -11,7 +11,7 @@ type CategoriesType = {
 }[]
 
 const getCategories = async (): Promise<CategoriesType> => {
-  const res = await fetch('http://localhost:3000/api/categories')
+  const res = await fetch('/api/categories')
   const data = res.json()
   return data
 }
