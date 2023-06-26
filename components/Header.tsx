@@ -11,19 +11,23 @@ type Props = {};
 
 const Header = (props: Props) => {
   const session = useSession();
-  const username = session?.data?.user?.name
-  const [display, setDisplay] = useState<boolean>(false)
+  const username = session?.data?.user?.name;
+  const [display, setDisplay] = useState<boolean>(false);
 
   const toggleProfileMenu = () => {
-    setDisplay(prevState => !prevState)
-  }
+    setDisplay((prevState) => !prevState);
+  };
 
   return (
     <>
       <header className="navbar sticky top-0 z-20 flex border bg-white sm:px-8">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn-ghost btn lg:hidden" htmlFor="my-drawer">
+            <label
+              tabIndex={0}
+              className="btn-ghost btn lg:hidden"
+              htmlFor="my-drawer"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -89,7 +93,11 @@ const Header = (props: Props) => {
           <div>
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
-              <input type="checkbox" data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" />
+              <input
+                type="checkbox"
+                data-toggle-theme="dark,light"
+                data-act-class="ACTIVECLASS"
+              />
 
               {/* sun icon */}
               <svg
@@ -110,28 +118,42 @@ const Header = (props: Props) => {
               </svg>
             </label>
           </div>
-          {session.status !== "authenticated" ? 
-          <Link href="/login">
-            <Button
-              text="Login"
-              className="btn-sm hidden rounded-lg text-xs capitalize min-[420px]:flex"
-            />
-          </Link> : 
-          <></>
-        }
-            <div className="cursor-pointer flex items-center justify-center rounded-full p-4 text-xs bg-[#0097a9] text-white h-4 w-4" onClick={toggleProfileMenu}>{username?.slice(0, 1)}</div>
+          {session.status !== "authenticated" ? (
+            <Link href="/login">
+              <Button
+                text="Login"
+                className="btn-sm hidden rounded-lg text-xs capitalize min-[420px]:flex"
+              />
+            </Link>
+          ) : null}
+          {session.status === "authenticated" && (
+            <div
+              className="cursor-pointer flex items-center justify-center rounded-full p-4 text-xs bg-[#0097a9] text-white h-4 w-4"
+              onClick={toggleProfileMenu}
+            >
+              {username?.slice(0, 1)}
+            </div>
+          )}
         </div>
       </header>
       <Drawer />
 
-      <div className="text-xs absolute right-0 top-20 shadow-lg rounded-lg bg-white w-[150px] h-[120px] p-5" style={{display: display ? "block" : "none"}}>
+      <div
+        className="text-xs fixed right-0 top-14 z-50 shadow-lg rounded-lg bg-white w-[150px] h-[120px] p-5"
+        style={{ display: display ? "block" : "none" }}
+      >
         <p className="text-main-text">{username}</p>
         <div className="divider w-full"></div>
-        <Link href="" className=" text-red-400 cursor-pointer" onClick={() => signOut()}>Sign out</Link>
+        <Link
+          href=""
+          className=" text-red-400 cursor-pointer"
+          onClick={() => signOut()}
+        >
+          Sign out
+        </Link>
       </div>
     </>
   );
 };
 
 export default Header;
-
