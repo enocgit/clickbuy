@@ -2,7 +2,7 @@ import Image from "next/image";
 import style from "./home.module.css";
 import Link from "next/link";
 import Button from "@/components/Button";
-
+import baseUrl from "./baseUrl/baseUrl";
 
 type ProductType = {
   _id: string;
@@ -12,18 +12,17 @@ type ProductType = {
   price: number;
   quantity: number;
   featured?: boolean;
-  extras?: string
-}[]
-
+  extras?: string;
+}[];
 
 const getProducts = async (): Promise<ProductType> => {
-  const res = await fetch("/api/products")
+  const res = await fetch(`${baseUrl}/api/products`);
   const data = res.json();
-  return data
-}
+  return data;
+};
 
 export default async function Home() {
-  const products = await getProducts()
+  const products = await getProducts();
   // console.log(products)
   return (
     <main className={`${style.container}`}>
@@ -62,23 +61,31 @@ export default async function Home() {
             Featured Products
           </h1>
           <div className="grid justify-center gap-12 min-[550px]:grid-cols-2 min-[940px]:grid-cols-3 min-[1640px]:grid-cols-4">
-            {products.map((product) => product.featured && (
-              <Link key={product._id} href={`/products/${product._id}`}>
-                <div className="flex flex-col gap-4 items-center">  
-                  <div 
-                    className="relative h-52 w-52 border-[6px] border-neutral-100 xl:h-72 xl:w-72"
-                  >
-                    <div className="w-full h-full">
-                      <Image src={`/products/${product.image}`} fill={true} style={{objectFit: "cover"}} alt={product.name} />
-                      <span className="absolute right-[-3rem] top-[-3rem] flex h-[80px] w-[80px] scale-50 items-center justify-center rounded-full border border-dashed border-main-text bg-brand-secondary p-8 text-xl font-bold min-[280px]:scale-75 min-[366px]:scale-90 lg:h-[120px] lg:w-[120px]">
-                        {`$${product.price}`}
-                      </span>
+            {products.map(
+              (product) =>
+                product.featured && (
+                  <Link key={product._id} href={`/products/${product._id}`}>
+                    <div className="flex flex-col gap-4 items-center">
+                      <div className="relative h-52 w-52 border-[6px] border-neutral-100 xl:h-72 xl:w-72">
+                        <div className="w-full h-full">
+                          <Image
+                            src={`/products/${product.image}`}
+                            fill={true}
+                            style={{ objectFit: "cover" }}
+                            alt={product.name}
+                          />
+                          <span className="absolute right-[-3rem] top-[-3rem] flex h-[80px] w-[80px] scale-50 items-center justify-center rounded-full border border-dashed border-main-text bg-brand-secondary p-8 text-xl font-bold min-[280px]:scale-75 min-[366px]:scale-90 lg:h-[120px] lg:w-[120px]">
+                            {`$${product.price}`}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <h1 className="text-lg lg:text-xl text-center">{ product.name }</h1>
-              </Link>
-            ))}
+                    <h1 className="text-lg lg:text-xl text-center">
+                      {product.name}
+                    </h1>
+                  </Link>
+                )
+            )}
           </div>
         </section>
       </div>

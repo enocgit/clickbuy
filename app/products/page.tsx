@@ -1,5 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import React from "react";
+import baseUrl from "../baseUrl/baseUrl";
 
 type Props = {};
 
@@ -8,16 +9,16 @@ type ProductType = {
   name: string;
   image: string;
   price: string;
-}[]
+}[];
 
-const getProduct = async(): Promise<ProductType> => {
-  const res = await fetch('/api/products')
-  const data = res.json()
-  return data
-}
+const getProduct = async (): Promise<ProductType> => {
+  const res = await fetch(`${baseUrl}/api/products`);
+  const data = res.json();
+  return data;
+};
 
 const Products = async (props: Props) => {
-  const products = await getProduct()
+  const products = await getProduct();
   // console.log(products)
 
   return (
@@ -27,8 +28,15 @@ const Products = async (props: Props) => {
           Products
         </h1>
         <section className="grid gap-20 gap-x-10 min-[480px]:grid-cols-2 min-[720px]:grid-cols-3 xl:gap-x-5 2xl:grid-cols-4 min-[2080px]:grid-cols-6">
-          {products.map(product => (
-            <ProductCard key={product._id} href={product._id} name={product.name} alt={product.image} image={product.image} price={product.price} />
+          {products.map((product) => (
+            <ProductCard
+              key={product._id}
+              href={product._id}
+              name={product.name}
+              alt={product.image}
+              image={product.image}
+              price={product.price}
+            />
           ))}
         </section>
       </div>
