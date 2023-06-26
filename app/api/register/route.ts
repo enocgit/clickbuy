@@ -1,9 +1,9 @@
-import { connectDB } from '@/lib/utils';
+import { connectDB } from "@/lib/utils";
 import User from "@/models/UserModel";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-export const POST = async (request) => {
+export const POST = async (request: Request) => {
   // return new NextResponse(JSON.stringify({ 'Waguan': 'Not working'}, {status: 200}))
   const { name, email, password } = await request.json();
 
@@ -25,7 +25,7 @@ export const POST = async (request) => {
 
     await newUser.save();
     return new NextResponse(JSON.stringify(newUser), { status: 201 });
-  } catch (err) {
-    return new NextResponse(err, { status: 500 });
+  } catch (error: any) {
+    return new NextResponse(error, { status: 500 });
   }
 };
