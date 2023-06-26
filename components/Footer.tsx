@@ -73,7 +73,7 @@ const Footer = (props: Props) => {
         <div className="flex flex-col items-center space-y-7">
           <Link href="/" className="flex gap-2">
             <Image src="/logo.svg" alt="Logo" width={20} height={20} />
-            <h1 className="font-[800] text-brand_accent">Clickbuy</h1>
+            <h1 className="font-[800] text-brand-accent">Clickbuy</h1>
           </Link>
           <div className="flex flex-col flex-wrap items-center justify-center gap-6 min-[230px]:flex-row">
             {footerNav.map((nav) => (

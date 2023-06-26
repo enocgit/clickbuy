@@ -1,4 +1,7 @@
+"use client"
 import React from 'react'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import Button from "@/components/Button"
@@ -6,8 +9,13 @@ import Button from "@/components/Button"
 type Props = {}
 
 const Login = (props: Props) => {
+    const session = useSession()
+    const router = useRouter()
+    session.status === "authenticated" && router.push('/')
+
     return (
         <main className='flex justify-center items-center'>
+            {session?.status === "loading" && <span className="loading loading-ring loading-lg"></span>}
             <div className="w-[250px] mx-2 mt-10 lg:mt-20 space-y-5">
                 <div>
                     <h1 className="text-lg font-[600]">Login</h1>
@@ -26,10 +34,10 @@ const Login = (props: Props) => {
                     </div>
                     <div className="space-y-4">
                     <div className="divider">or</div>
-                        <button type="button" className="flex justify-center items-center text-white gap-1 bg-[#448dd1] btn-block btn-sm text-xs capitalize font-[500]">
-                        <Image src="/google-logo.svg" alt="" height={20} width={20}/>
-                            Sign in with Google
-                        </button>
+                    <button  onClick={() => signIn("google")} type="button" className="flex justify-center items-center text-white gap-1 bg-[#448dd1] btn-block btn-sm text-xs capitalize font-[500]">
+                    <Image src="/google-logo.svg" alt="" height={20} width={20}/>
+                        Sign in with Google
+                    </button>
                     </div>
                     <div className="text-center text-[0.7rem] font-[400]">
                         <p>Don&apos;t have an account? <Link href="/register"className="text-brand-accent font-[600]">Sign up here</Link></p>
