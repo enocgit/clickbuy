@@ -10,6 +10,9 @@ type ProductType = {
 
 const getProduct = async (id: string): Promise<ProductType> => {
   const res = await fetch(`${baseUrl}/api/products/${id}`);
+  if (!res.ok) {
+    console.log("Couldn't fetch product resource")
+  }
   const data = res.json();
   return data;
 };

@@ -4,12 +4,15 @@ import { connectDB } from "@/lib/utils";
 
 export const GET = async (request: Request, { params }: { params: { id: string } }) => {
   const { id } = params;
-  console.log("ID:", id);
 
   try {
     await connectDB();
     const product = await Product.findById(id);
-    return new NextResponse(JSON.stringify(product), { status: 200 });
+    if (!product) {
+      // return NextResponse.json({error: `Product with the id: ${id} doesn't exist`}, { status: 500})
+      throw new Error(`Product with the id ${id} doesn't exist`);
+    }
+    return NextResponse.json(product)
   } catch (error: any) {
     throw new Error(error);
   }
