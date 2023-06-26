@@ -11,7 +11,7 @@ export async function connectDB() {
   try {
       await mongoose.connect(process.env.CONNECTION_STRING as string)
       console.log(`Successfully connected to database. DATABASE: ${mongoose.connection.name} HOST: ${mongoose.connection.host}`)
-  } catch (error) {
+  } catch (error: any) {
       throw new Error(error)
   }
 }
