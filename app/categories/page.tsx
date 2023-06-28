@@ -1,6 +1,5 @@
 import CategoryCard from "@/components/CategoryCard";
-import React from "react";
-import baseUrl from "../baseUrl/baseUrl";
+import baseUrl from "@/baseUrl/baseUrl";
 
 type Props = {};
 
@@ -12,9 +11,16 @@ type CategoriesType = {
 }[];
 
 const getCategories = async (): Promise<CategoriesType> => {
-  const res = await fetch(`${baseUrl}/api/categories`);
-  const data = res.json();
-  return data;
+  try {
+    const res = await fetch(`${baseUrl}/api/categories`);
+    if (!res.ok) {
+      console.log("Couldn't fetch data");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    console.log(error);
+  }
 };
 
 const Categories = async (props: Props) => {

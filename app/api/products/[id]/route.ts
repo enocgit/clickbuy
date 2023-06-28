@@ -9,8 +9,8 @@ export const GET = async (request: Request, { params }: { params: { id: string }
     await connectDB();
     const product = await Product.findById(id);
     if (!product) {
-      // return NextResponse.json({error: `Product with the id: ${id} doesn't exist`}, { status: 500})
-      throw new Error(`Product with the id ${id} doesn't exist`);
+      throw new Error();
+      return NextResponse.json({message: `Product with the id ${id} doesn't exist`}, { status: 400 })
     }
     return NextResponse.json(product)
   } catch (error: any) {

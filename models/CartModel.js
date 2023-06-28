@@ -12,20 +12,24 @@ const cartSchema = new Schema({
                 required: [true, "Product quantity in required in cart"],
                 min: [1, "Quantity must be at least 1"]
             },
-            isSelected: {
+            is_selected: {
                 type: Boolean,
                 default: false
             }
         }
     ],
-    totalPrice: {
+    total_price: {
         type: Number,
         required: [true, "Total price should be specified"]
     },
+    // user_id: {
+    //     type: Schema.Types.ObjectId,
+    //     required: [true, "Cart should be assigned to a user"],
+    //     ref: "User"
+    // }
     user_id: {
-        type: Schema.Types.ObjectId,
-        required: [true, "Cart should be assigned to a user"],
-        ref: "User"
+        type: String,
+        required: [true, "Cart should to associated with a user"]
     }
 })
 

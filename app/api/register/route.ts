@@ -13,7 +13,8 @@ export const POST = async (request: Request) => {
 
     // check if a user exists
     if (userExists) {
-      return new NextResponse("Email already taken", { status: 400 });
+      // return new NextResponse("Email already taken", { status: 400 });
+      return NextResponse.json({"message": "Email already taken."}, {status: 400});
     }
 
     const hashedpassword = await bcrypt.hash(password, 10);
@@ -24,8 +25,11 @@ export const POST = async (request: Request) => {
     });
 
     await newUser.save();
-    return new NextResponse(JSON.stringify(newUser), { status: 201 });
+    return NextResponse.json({"message": "Your account has been successfully created"}, { status: 201 })
+    // return new NextResponse(JSON.stringify(newUser), { status: 201 });
+    return NextResponse.json(newUser, { status: 201 });
   } catch (error: any) {
-    return new NextResponse(error, { status: 500 });
+    // return new NextResponse(error, { status: 500 });
+    throw new Error(error)
   }
 };

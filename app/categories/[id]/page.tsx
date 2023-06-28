@@ -2,7 +2,7 @@ import ProductCard from "@/components/ProductCard";
 import CategoryModel from "@/models/CategoryModel";
 import Link from "next/link";
 import mongoose from "mongoose";
-import baseUrl from "@/app/baseUrl/baseUrl";
+import baseUrl from "@/baseUrl/baseUrl";
 // import { identifierToKeywordKind } from "typescript";
 
 type Props = {};
@@ -19,9 +19,16 @@ type CategoriesProductsType = {
 const getCategoryProducts = async (
   id: string
 ): Promise<CategoriesProductsType> => {
-  const res = await fetch(`${baseUrl}/api/categories/${id}`);
-  const data = res.json();
-  return data;
+  try {
+    const res = await fetch(`${baseUrl}/api/categories/${id}`);
+    if (!res.ok) {
+      console.log("Couldn't fetch data");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    console.log(error);
+  }
 };
 
 const Category = async ({ params }: { params: { id: string } }) => {
@@ -59,7 +66,7 @@ const Category = async ({ params }: { params: { id: string } }) => {
         </section>
       </div>
       <div className="mt-20 flex items-center justify-center">
-        <button className="btn rounded-none border border-[#d58566] bg-white px-8 font-[600] uppercase text-main_text">
+        <button className="text-main_text btn rounded-none border border-[#d58566] bg-white px-8 font-[600] uppercase">
           View more
         </button>
       </div>

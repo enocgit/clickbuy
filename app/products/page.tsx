@@ -1,6 +1,5 @@
 import ProductCard from "@/components/ProductCard";
-import React from "react";
-import baseUrl from "../baseUrl/baseUrl";
+import baseUrl from "@/baseUrl/baseUrl";
 
 type Props = {};
 
@@ -12,9 +11,16 @@ type ProductType = {
 }[];
 
 const getProduct = async (): Promise<ProductType> => {
-  const res = await fetch(`${baseUrl}/api/products`);
-  const data = res.json();
-  return data;
+  try {
+    const res = await fetch(`${baseUrl}/api/products`);
+    if (!res.ok) {
+      console.log("Couldn't fetch data");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    console.log("error");
+  }
 };
 
 const Products = async (props: Props) => {

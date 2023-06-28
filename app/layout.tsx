@@ -2,10 +2,10 @@ import Header from "@/components/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
-import ThemeWrapper from "./ThemeWrapper";
+import { ThemeProvider } from "../contexts/ThemeProvider";
 import AuthProvider from "@/contexts/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Clickbuy",
@@ -20,13 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className}>
-        <AuthProvider>
-          <div className="">
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <div className="dark:bg-neutral-900 dark:text-white">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

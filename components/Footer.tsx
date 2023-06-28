@@ -1,7 +1,6 @@
 import { FacebookIcon, InstagramIcon, TwitterIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 type Props = {};
 
@@ -68,7 +67,7 @@ const footerSocial = [
 
 const Footer = (props: Props) => {
   return (
-    <footer className="mt-40 flex items-center justify-center bg-[#f9f9f9] px-10 pb-12 pt-8 text-center">
+    <footer className="mt-40 flex items-center justify-center bg-[#f9f9f9] dark:bg-neutral-800 dark:text-white px-10 pb-12 pt-8 text-center">
       <div className="space-y-16">
         <div className="flex flex-col items-center space-y-7">
           <Link href="/" className="flex gap-2">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import style from "./home.module.css";
 import Link from "next/link";
 import Button from "@/components/Button";
-import baseUrl from "./baseUrl/baseUrl";
+import baseUrl from "@/baseUrl/baseUrl";
 
 type ProductType = {
   _id: string;
@@ -16,9 +16,16 @@ type ProductType = {
 }[];
 
 const getProducts = async (): Promise<ProductType> => {
-  const res = await fetch(`${baseUrl}/api/products`);
-  const data = res.json();
-  return data;
+  try {
+    const res = await fetch(`${baseUrl}/api/products`);
+    if (!res.ok) {
+      console.log("Couldn't fetch data");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    console.log(error);
+  }
 };
 
 export default async function Home() {
@@ -34,7 +41,7 @@ export default async function Home() {
         >
           <div className="flex flex-col gap-8">
             <h1
-              className="min-[306px]-text-3xl text-2xl font-[900] leading-tight text-main-text min-[366px]:text-4xl md:w-8/12 xl:w-7/12 xl:text-6xl"
+              className="min-[306px]-text-3xl text-2xl font-[900] leading-tight text-main-text dark:text-white min-[366px]:text-4xl md:w-8/12 xl:w-7/12 xl:text-6xl"
               id="tagline"
             >
               Where Shopping Perfection Begins.
@@ -57,7 +64,7 @@ export default async function Home() {
           id="featured-products"
           className="mt-52 space-y-14 min-[506px]:mt-96 min-[1340px]:mt-72"
         >
-          <h1 className="text-xl font-[700] text-main-text min-[366px]:text-3xl">
+          <h1 className="text-xl font-[700] text-main-text dark:text-white min-[366px]:text-3xl">
             Featured Products
           </h1>
           <div className="grid justify-center gap-12 min-[550px]:grid-cols-2 min-[940px]:grid-cols-3 min-[1640px]:grid-cols-4">
@@ -65,9 +72,9 @@ export default async function Home() {
               (product) =>
                 product.featured && (
                   <Link key={product._id} href={`/products/${product._id}`}>
-                    <div className="flex flex-col gap-4 items-center">
+                    <div className="flex flex-col items-center gap-4">
                       <div className="relative h-52 w-52 border-[6px] border-neutral-100 xl:h-72 xl:w-72">
-                        <div className="w-full h-full">
+                        <div className="h-full w-full">
                           <Image
                             src={`/products/${product.image}`}
                             fill={true}
@@ -80,7 +87,7 @@ export default async function Home() {
                         </div>
                       </div>
                     </div>
-                    <h1 className="text-lg lg:text-xl text-center">
+                    <h1 className="text-center text-lg lg:text-xl">
                       {product.name}
                     </h1>
                   </Link>
