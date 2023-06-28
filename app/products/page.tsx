@@ -5,6 +5,8 @@ import { ProductType, ProductTypeArray } from "@/types/ProductType";
 
 type Props = {};
 
+console.log('BASEURL:', baseUrl)
+
 const getProduct = async (): Promise<ProductTypeArray> => {
   try {
     const res = await fetch(`${baseUrl}/api/products`);
