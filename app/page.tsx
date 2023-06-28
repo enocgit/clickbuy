@@ -25,6 +25,7 @@ const getProducts = async (): Promise<ProductType> => {
     return data;
   } catch (error: any) {
     console.log(error);
+    throw error;
   }
 };
 

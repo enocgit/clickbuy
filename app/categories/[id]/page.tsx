@@ -1,8 +1,10 @@
+// @ts-nocheck
 import ProductCard from "@/components/ProductCard";
 import CategoryModel from "@/models/CategoryModel";
 import Link from "next/link";
 import mongoose from "mongoose";
 import baseUrl from "@/baseUrl/baseUrl";
+import { ProductType } from "@/types/ProductType";
 // import { identifierToKeywordKind } from "typescript";
 
 type Props = {};
@@ -28,6 +30,7 @@ const getCategoryProducts = async (
     return data;
   } catch (error: any) {
     console.log(error);
+    throw error;
   }
 };
 

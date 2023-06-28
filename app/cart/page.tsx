@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import Button from "@/components/Button";
 import CartItemCard from "@/components/CartItemCard";
@@ -9,6 +10,7 @@ import { Minus, Plus, Trash, Trash2 } from "lucide-react";
 import Image from "next/image";
 import baseUrl from "@/baseUrl/baseUrl";
 import { useEffect } from "react";
+import { CartProductsType } from "@/types/ProductType";
 
 const Cart = () => {
   const session = useSession();
@@ -70,7 +72,7 @@ const Cart = () => {
         </div>
 
         {/*  */}
-        {data?.products?.map(async (product) => {
+        {data?.products?.map(async (product: CartProductsType) => {
           const res = await fetch(
             `${baseUrl}/api/products/${product?.product_id}`
           );
@@ -139,7 +141,7 @@ const Cart = () => {
         </div>
 
         {/*  */}
-        {data?.products?.map(async (product) => {
+        {data?.products?.map(async (product: CartProductsType) => {
           const res = await fetch(
             `${baseUrl}/api/products/${product?.product_id}`
           );

@@ -20,6 +20,7 @@ const getCategories = async (): Promise<CategoriesType> => {
     return data;
   } catch (error: any) {
     console.log(error);
+    throw error;
   }
 };
 

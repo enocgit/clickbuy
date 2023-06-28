@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "../contexts/ThemeProvider";
 import AuthProvider from "@/contexts/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["cyrillic"] });
 
 export const metadata = {
   title: "Clickbuy",

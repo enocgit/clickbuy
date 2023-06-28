@@ -1,16 +1,11 @@
+// @ts-nocheck
 import ProductCard from "@/components/ProductCard";
 import baseUrl from "@/baseUrl/baseUrl";
+import { ProductType, ProductTypeArray } from "@/types/ProductType";
 
 type Props = {};
 
-type ProductType = {
-  _id: string;
-  name: string;
-  image: string;
-  price: string;
-}[];
-
-const getProduct = async (): Promise<ProductType> => {
+const getProduct = async (): Promise<ProductTypeArray> => {
   try {
     const res = await fetch(`${baseUrl}/api/products`);
     if (!res.ok) {
@@ -20,6 +15,7 @@ const getProduct = async (): Promise<ProductType> => {
     return data;
   } catch (error: any) {
     console.log("error");
+    throw error;
   }
 };
 

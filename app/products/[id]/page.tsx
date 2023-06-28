@@ -3,14 +3,7 @@ import baseUrl from "@/baseUrl/baseUrl";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-type ProductType = {
-  id: string;
-  name: string;
-  image: string;
-  description: string;
-  price: number;
-};
+import { ProductType } from "@/types/ProductType";
 
 const Product = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -29,6 +22,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
       return data;
     } catch (error: any) {
       console.log(error);
+      throw error;
     }
   };
 
