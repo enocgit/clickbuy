@@ -18,6 +18,9 @@ type CategoriesProductsType = {
   category_id?: string;
 }[];
 
+console.log('CATEGORIES ID PROD DEBUG ?')
+
+
 const getCategoryProducts = async (
   id: string
 ): Promise<CategoriesProductsType> => {

@@ -15,6 +15,8 @@ type ProductType = {
   extras?: string;
 }[];
 
+console.log('HOMEPAGE PROD DEBUG ?')
+
 const getProducts = async (): Promise<ProductType> => {
   try {
     const res = await fetch(`${baseUrl}/api/products`);

@@ -5,7 +5,8 @@ import { ProductType, ProductTypeArray } from "@/types/ProductType";
 
 type Props = {};
 
-console.log('BASEURL:', baseUrl)
+console.log('PRODUCTS BASE DEBUG:', baseUrl)
+console.log(baseUrl)
 
 const getProduct = async (): Promise<ProductTypeArray> => {
   try {

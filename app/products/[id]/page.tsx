@@ -5,6 +5,9 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ProductType } from "@/types/ProductType";
 
+console.log('PRODUCTS ID PROD DEBUG ?')
+
+
 const Product = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const session = useSession();

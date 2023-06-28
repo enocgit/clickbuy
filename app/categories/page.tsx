@@ -10,6 +10,9 @@ type CategoriesType = {
   description?: string;
 }[];
 
+console.log('CATEGORIES PROD DEBUG ?')
+
+
 const getCategories = async (): Promise<CategoriesType> => {
   try {
     const res = await fetch(`${baseUrl}/api/categories`);
