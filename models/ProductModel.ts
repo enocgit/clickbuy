@@ -21,8 +21,8 @@ const productSchema = new Schema(
       required: [true, "Image is required"],
     },
     quantity: {
-        type: Number,
-        required: [true, "Quantity of product in stock in required"]
+      type: Number,
+      required: [true, "Quantity of product in stock in required"]
     },
     category_id: {
       type: Schema.Types.ObjectId,

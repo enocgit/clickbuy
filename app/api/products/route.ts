@@ -6,12 +6,15 @@ export const GET = async (request: Request) => {
   try {
     await connectDB();
     const products = await Product.find();
-    if (!products) {
-      return NextResponse.json({message: "No product found"}, { status: 400 })
+
+    if (products.length === 0) {
+      return NextResponse.json({ message: "No products found" }, { status: 400 });
     }
-    // return new NextResponse(JSON.stringify(products), { status: 200 });
-    return NextResponse.json(products)
+
+    return NextResponse.json(products);
   } catch (error: any) {
-    throw new Error(error);
+    console.error(error);
+    throw new Error(error)
+    // return NextResponse.error("An error occured while fetching products")
   }
 };
