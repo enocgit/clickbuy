@@ -10,12 +10,9 @@ type CategoriesType = {
   description?: string;
 }[];
 
-console.log('CATEGORIES PROD DEBUG ?')
-
-
 const getCategories = async (): Promise<CategoriesType> => {
   try {
-    const res = await fetch(`${baseUrl}/api/categories`);
+    const res = await fetch(`http://localhost:3000/api/categories`);
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }

@@ -5,12 +5,9 @@ import { ProductType, ProductTypeArray } from "@/types/ProductType";
 
 type Props = {};
 
-console.log('PRODUCTS BASE DEBUG:', baseUrl)
-console.log(baseUrl)
-
 const getProduct = async (): Promise<ProductTypeArray> => {
   try {
-    const res = await fetch(`${baseUrl}/api/products`);
+    const res = await fetch(`http://localhost:3000/api/products`);
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }

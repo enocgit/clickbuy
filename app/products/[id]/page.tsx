@@ -5,9 +5,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ProductType } from "@/types/ProductType";
 
-console.log('PRODUCTS ID PROD DEBUG ?')
-
-
 const Product = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const session = useSession();
@@ -17,7 +14,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
 
   const getProduct = async (id: string): Promise<ProductType> => {
     try {
-      const res = await fetch(`${baseUrl}/api/products/${id}`);
+      const res = await fetch(`http://localhost:3000/api/products/${id}`);
       if (!res.ok) {
         console.log("Couldn't fetch product resource");
       }

@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/utils";
 import Product from "@/models/ProductModel";
 import { NextResponse } from "next/server";
 
-export const GET = async (request: Request) => {
+export  async function GET (request) {
   try {
     await connectDB();
     const products = await Product.find();
@@ -12,7 +12,7 @@ export const GET = async (request: Request) => {
     }
 
     return NextResponse.json(products);
-  } catch (error: any) {
+  } catch (error) {
     console.error(error);
     throw new Error(error)
     // return NextResponse.error("An error occured while fetching products")
