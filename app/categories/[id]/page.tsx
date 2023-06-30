@@ -4,26 +4,16 @@ import CategoryModel from "@/models/CategoryModel";
 import Link from "next/link";
 import mongoose from "mongoose";
 import baseUrl from "@/baseUrl/baseUrl";
-import { ProductType } from "@/types/ProductType";
+// import { ProductType } from "@/types/types";
 // import { identifierToKeywordKind } from "typescript";
 
 type Props = {};
 
-type CategoriesProductsType = {
-  _id: string;
-  name: string;
-  image: string;
-  alt: string;
-  price: string;
-  category_id?: string;
-}[];
-
-
 const getCategoryProducts = async (
   id: string
-): Promise<CategoriesProductsType> => {
+): Promise<CategoriesProductsType[]> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/categories/${id}`);
+    const res = await fetch(`${baseUrl}/api/categories/${id}`);
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }

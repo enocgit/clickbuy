@@ -3,16 +3,9 @@ import baseUrl from "@/baseUrl/baseUrl";
 
 type Props = {};
 
-type CategoriesType = {
-  _id: string;
-  name: string;
-  image: string;
-  description?: string;
-}[];
-
-const getCategories = async (): Promise<CategoriesType> => {
+const getCategories = async (): Promise<CategoriesType[]> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/categories`);
+    const res = await fetch(`${baseUrl}/api/categories`);
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }

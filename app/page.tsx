@@ -15,11 +15,9 @@ type ProductType = {
   extras?: string;
 }[];
 
-console.log('HOMEPAGE PROD DEBUG ?')
-
 const getProducts = async (): Promise<ProductType> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/products`);
+    const res = await fetch(`${baseUrl}/api/products`);
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }

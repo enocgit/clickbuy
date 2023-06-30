@@ -10,7 +10,7 @@ import { Minus, Plus, Trash, Trash2 } from "lucide-react";
 import Image from "next/image";
 import baseUrl from "@/baseUrl/baseUrl";
 import { useEffect } from "react";
-import { CartProductsType } from "@/types/ProductType";
+import { CartProductsType } from "@/types/types";
 
 const Cart = () => {
   const session = useSession();

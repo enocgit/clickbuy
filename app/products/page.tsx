@@ -1,13 +1,12 @@
-// @ts-nocheck
 import ProductCard from "@/components/ProductCard";
 import baseUrl from "@/baseUrl/baseUrl";
-import { ProductType, ProductTypeArray } from "@/types/ProductType";
+// import { ProductType, ProductTypeArray } from "@/types/ProductType";
 
 type Props = {};
 
-const getProduct = async (): Promise<ProductTypeArray> => {
+const getProduct = async (): Promise<ProductType[]> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/products`);
+    const res = await fetch(`${baseUrl}/api/products`);
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }
@@ -37,7 +36,7 @@ const Products = async (props: Props) => {
               name={product.name}
               alt={product.image}
               image={product.image}
-              price={product.price}
+              price={product.price as number}
             />
           ))}
         </section>

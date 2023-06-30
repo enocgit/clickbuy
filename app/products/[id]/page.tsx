@@ -3,7 +3,7 @@ import baseUrl from "@/baseUrl/baseUrl";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ProductType } from "@/types/ProductType";
+// import { ProductType } from "@/types/types";
 
 const Product = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -14,7 +14,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
 
   const getProduct = async (id: string): Promise<ProductType> => {
     try {
-      const res = await fetch(`http://localhost:3000/api/products/${id}`);
+      const res = await fetch(`${baseUrl}/api/products/${id}`);
       if (!res.ok) {
         console.log("Couldn't fetch product resource");
       }

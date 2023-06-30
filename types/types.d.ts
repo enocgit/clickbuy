@@ -1,5 +1,5 @@
-export type ProductType = {
-    _id: number;
+type ProductType = {
+    _id: string;
     image: string;
     name: string;
     description?: string;
@@ -10,20 +10,25 @@ export type ProductType = {
     extras?: string;
 }
 
-export type ProductTypeArray = {
-    _id: number;
-    image: string;
+
+type CategoriesType = {
+    _id: string;
     name: string;
+    image: string;
     description?: string;
-    price?: number;
-    quantity?: number;
+}
+
+type CategoriesProductsType = {
+    _id: string;
+    name: string;
+    image: string;
+    alt: string;
+    price: string;
     category_id?: string;
-    featured?: string;
-    extras?: string;
-}[]
+}
 
 
-export type CartProductsType = {
+type CartProductsType = {
     product_id: string;
     is_selected: boolean;
     quantity: number;
