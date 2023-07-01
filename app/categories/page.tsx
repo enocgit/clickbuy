@@ -42,3 +42,12 @@
 // };
 
 // export default Categories;
+
+
+export default async function page() {
+
+  return (
+    
+    <h1>Hi</h1>
+  );
+}

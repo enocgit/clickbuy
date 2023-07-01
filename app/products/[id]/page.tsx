@@ -92,3 +92,12 @@
 // };
 
 // export default Product;
+
+
+export default async function page() {
+
+  return (
+    
+    <h1>Hi</h1>
+  );
+}

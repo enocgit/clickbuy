@@ -168,3 +168,12 @@
 // };
 
 // export default Login;
+
+
+export default async function page() {
+
+  return (
+    
+    <h1>Hi</h1>
+  );
+}
