@@ -10,7 +10,7 @@
 // import Image from "next/image";
 // import baseUrl from "@/baseUrl/baseUrl";
 // import { useEffect } from "react";
-// import { CartProductsType } from "@/types/types";
+// import { CartProductsType } from "@/types/ProductType";
 
 // const Cart = () => {
 //   const session = useSession();
@@ -202,7 +202,6 @@
 // };
 
 // export default Cart;
-
 
 export default async function page() {
 

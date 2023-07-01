@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 // import Footer from "@/components/Footer";
 import { ThemeProvider } from "../contexts/ThemeProvider";
 import AuthProvider from "@/contexts/AuthProvider";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
@@ -23,9 +25,9 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <div className="dark:bg-neutral-900 dark:text-white">
-              {/* <Header /> */}
+              <Header />
               {children}
-              {/* <Footer /> */}
+              <Footer />
             </div>
           </AuthProvider>
         </ThemeProvider>

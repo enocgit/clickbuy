@@ -1,4 +1,4 @@
-// // @ts-nocheck
+// @ts-nocheck
 // "use client";
 // import React, { useState, useContext } from "react";
 // import { signOut, useSession } from "next-auth/react";
@@ -181,3 +181,11 @@
 // };
 
 // export default Header;
+
+export default async function page() {
+
+  return (
+    
+    <h1>Hi</h1>
+  );
+}

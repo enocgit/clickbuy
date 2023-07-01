@@ -27,6 +27,7 @@
 //   };
 
 //   const addToCart = async (product_id: string, user_id: string) => {
+    
 //     if (!isAuthenticated) {
 //       router.push("/login");
 //       return 0;
@@ -92,7 +93,6 @@
 // };
 
 // export default Product;
-
 
 export default async function page() {
 

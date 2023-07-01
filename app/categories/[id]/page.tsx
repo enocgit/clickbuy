@@ -70,7 +70,6 @@
 
 // export default Category;
 
-
 export default async function page() {
 
   return (
@@ -78,3 +77,4 @@ export default async function page() {
     <h1>Hi</h1>
   );
 }
+
