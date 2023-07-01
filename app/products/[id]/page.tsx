@@ -78,11 +78,11 @@ const Product = async ({ params }: { params: { id: string } }) => {
           <h2 className="font-[600] text-brand-accent">{`$${product.price}`}</h2>
           <hr className="relative bottom-3 w-3/12 border border-main-text" />
           <div className="flex flex-col gap-6 min-[810px]:flex-row">
-            <button className="btn-sm btn rounded-none bg-brand-accent px-4 py-2 text-xs font-[600] uppercase text-white">
+            <button className="btn-sm btn rounded-none bg-brand-accent px-4 py-2 h-12 flex items-center justify-center text-xs font-[600] uppercase text-white">
               Buy Now
             </button>
             <button
-              className="btn-sm btn rounded-none border border-brand-accent bg-white px-4 py-2 text-xs font-[600] uppercase text-main-text"
+              className="btn-sm btn rounded-none border border-brand-accent bg-white px-4 py-2 h-12 flex items-center justify-center text-xs font-[600] uppercase text-main-text"
               onClick={() => addToCart(id, userId as string)}
             >
               Add to Cart

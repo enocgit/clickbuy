@@ -9,6 +9,7 @@ import Button from "@/components/Button";
 import { EyeIcon } from "lucide-react";
 import { EyeOffIcon } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
+import Drawer from "@/components/Drawer";
 
 type Props = {};
 
@@ -59,6 +60,7 @@ const Login = (props: Props) => {
   session.status === "authenticated" && router.push("/");
 
   return (
+    <>
     <main className="flex items-center justify-center">
       <div className="mx-2 mt-10 w-[250px] space-y-5 lg:mt-20">
         {session?.status === "loading" && (
@@ -164,6 +166,8 @@ const Login = (props: Props) => {
         </form>
       </div>
     </main>
+      {/* <Drawer /> */}
+    </>
   );
 };
 
