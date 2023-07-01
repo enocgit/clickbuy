@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request: Request, { params }: { params: { id: string } }) => {
   const { id } = params;
+  console.log(id)
 
   try {
     await connectDB();

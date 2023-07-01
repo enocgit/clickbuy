@@ -10,7 +10,7 @@ export const POST = async (req: Request) => {
     try {
         await connectDB()
         // get cart by user ID
-        let cart = await Cart.findOne({user_id})
+        let cart = await Cart.findOne({ user_id })
         // If there is no Cart, create one
         if (!cart) {
             cart = await new Cart({
@@ -38,7 +38,6 @@ export const POST = async (req: Request) => {
 
     } catch (error: any) {
         throw new Error(error)
-        
     }
 }
 

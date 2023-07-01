@@ -1,6 +1,7 @@
 // @ts-nocheck
 "use client";
 import Image from "next/image";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -187,6 +188,7 @@ const Register = (props: Props) => {
             <button
               type="button"
               className="btn-block btn-sm flex items-center justify-center gap-1 bg-[#448dd1] text-xs font-[500] capitalize text-white"
+              onClick={() => signIn()}
             >
               <Image src="/google-logo.svg" alt="" height={20} width={20} />
               Continue with Google
