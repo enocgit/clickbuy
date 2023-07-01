@@ -1,7 +1,7 @@
-import Header from "@/components/Header";
+// import Header from "@/components/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import { ThemeProvider } from "../contexts/ThemeProvider";
 import AuthProvider from "@/contexts/AuthProvider";
 
@@ -23,9 +23,9 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <div className="dark:bg-neutral-900 dark:text-white">
-              <Header />
+              {/* <Header /> */}
               {children}
-              <Footer />
+              {/* <Footer /> */}
             </div>
           </AuthProvider>
         </ThemeProvider>
