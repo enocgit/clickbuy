@@ -32,10 +32,12 @@ const Drawer = () => {
         <ul className="menu menu-vertical relative h-full w-80 bg-white p-4 text-base-content dark:bg-neutral-800 dark:text-white">
           {/* Sidebar content here */}
           <li className="">
-            <div className="relative">
+            <div className="relative inline">
               <Link href="/" className="flex items-center gap-2">
                 <Image src="/logo.svg" alt="Logo" width={20} height={20} />
-                <h1 className="font-[800] text-brand-accent">ClickBuy</h1>
+                <h1 className="inline font-[800] text-brand-accent">
+                  ClickBuy
+                </h1>
               </Link>
             </div>
           </li>

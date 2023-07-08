@@ -10,6 +10,23 @@ type ProductType = {
     extras?: string;
 }
 
+type CartType = {
+    _id: string;
+    products: {
+        product_id: string;
+        is_selected: boolean;
+        quantity: number;
+    }[],
+    price: number;
+    user_id: string;
+}
+
+type CartProductType = {
+    _id: number,
+    is_selected: boolean,
+    quantity: number
+}
+
 
 type CategoriesType = {
     _id: string;

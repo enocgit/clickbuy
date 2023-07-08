@@ -31,7 +31,6 @@ const Category = async ({ params }: { params: { id: string } }) => {
   const categoryProducts = await getCategoryProducts(id);
   const firstCategoryId = categoryProducts[0]?.category_id;
   const category = await CategoryModel.findOne({ _id: firstCategoryId });
-  console.log(category.name);
 
   return (
     <main className="overflow-x-hidden">

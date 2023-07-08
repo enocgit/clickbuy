@@ -19,14 +19,15 @@ const handler = NextAuth({
 
         try {
           const existingUser = await User.findOne({email: credentials.email})
+          console.log(existingUser)
           if (!existingUser) {
-            throw new Error("User doesn't exist")
+            throw new Error("User doesn't exist.")
           }
 
           if (existingUser && bcrypt.compare(existingUser.password, credentials.password)) {
             return existingUser
           }else {
-            throw new Error("Password is incorrect")
+            throw new Error("Password is incorrect.")
           }
           
         } catch (error) {

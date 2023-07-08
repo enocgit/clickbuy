@@ -49,7 +49,7 @@ export const GET = async (req: Request) => {
 
     try {
         await connectDB()
-        const cart = await Cart.findOne({user_id: userID})
+        const cart = await Cart.findOne({user_id: userID}).populate('products.product_id')
         if (!cart) {
             return NextResponse.json(
                 { error: "Cart not found" },

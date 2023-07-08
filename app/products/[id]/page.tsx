@@ -1,5 +1,6 @@
 "use client";
 import baseUrl from "@/baseUrl/baseUrl";
+import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,6 @@ const getProduct = async (id: string): Promise<ProductType> => {
       console.log("Couldn't fetch product resource");
     }
     const data = await res.json();
-    console.log(data)
     return data;
   } catch (error: any) {
     console.log(error);
@@ -22,7 +22,6 @@ const getProduct = async (id: string): Promise<ProductType> => {
 
 const Product = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  console.log(id)
   const session = useSession();
   const userId = session?.data?.user?.email;
   const isAuthenticated = session?.status === "authenticated";
@@ -31,7 +30,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
   const addToCart = async (product_id: string, user_id: string) => {
     
     if (!isAuthenticated) {
-      router.push("/login");
+      router.push("/login?unauthenticated=true");
       return 0;
     }
     const product = await getProduct(id);
@@ -49,7 +48,11 @@ const Product = async ({ params }: { params: { id: string } }) => {
       });
 
       const data = await res.json();
-      alert(data.message);
+      // alert(data.message);
+      toast.success(data.message, {
+        duration: 4000,
+        style: {marginTop: "3rem"}
+      })
     } catch (error: any) {
       console.log(error);
     }
@@ -60,37 +63,40 @@ const Product = async ({ params }: { params: { id: string } }) => {
   const product = await getProduct(id);
 
   return (
-    <main className="mx-auto mt-16 flex w-10/12 flex-col gap-10 min-[400px]:w-9/12 sm:flex-row min-[810px]:gap-20 lg:mt-20">
-      <section className="relative flex h-[300px] w-full items-center justify-center border-[6px] border-neutral-100 sm:w-[600px] ">
-        <Image
-          src={`/products/${product.image}`}
-          alt={product.name}
-          fill={true}
-          style={{ objectFit: "cover" }}
-        />
-      </section>
-      <section className="space-y-10">
-        <div className="space-y-2">
-          <h1 className="text-xl font-[500]">{product.name}</h1>
-          <p className="text-xs">{product.description}</p>
-        </div>
-        <div className="space-y-5">
-          <h2 className="font-[600] text-brand-accent">{`$${product.price}`}</h2>
-          <hr className="relative bottom-3 w-3/12 border border-main-text" />
-          <div className="flex flex-col gap-6 min-[810px]:flex-row">
-            <button className="btn-sm btn rounded-none bg-brand-accent px-4 py-2 h-12 flex items-center justify-center text-xs font-[600] uppercase text-white">
-              Buy Now
-            </button>
-            <button
-              className="btn-sm btn rounded-none border border-brand-accent bg-white px-4 py-2 h-12 flex items-center justify-center text-xs font-[600] uppercase text-main-text"
-              onClick={() => addToCart(id, userId as string)}
-            >
-              Add to Cart
-            </button>
+    <>
+      <Toaster />
+      <main className="mx-auto mt-16 flex w-10/12 flex-col gap-10 min-[400px]:w-9/12 sm:flex-row min-[810px]:gap-20 lg:mt-20">
+        <section className="relative flex h-[300px] w-full items-center justify-center border-[6px] border-neutral-100 sm:w-[600px] ">
+          <Image
+            src={`/products/${product.image}`}
+            alt={product.name}
+            fill={true}
+            style={{ objectFit: "cover" }}
+          />
+        </section>
+        <section className="space-y-10">
+          <div className="space-y-2">
+            <h1 className="text-xl font-[500]">{product.name}</h1>
+            <p className="text-xs">{product.description}</p>
           </div>
-        </div>
-      </section>
-    </main>
+          <div className="space-y-5">
+            <h2 className="font-[600] text-brand-accent">{`$${product.price}`}</h2>
+            <hr className="relative bottom-3 w-3/12 border border-main-text" />
+            <div className="flex flex-col gap-6 min-[810px]:flex-row">
+              <button className="btn-sm btn rounded-none bg-brand-accent px-4 py-2 h-12 flex items-center justify-center text-xs font-[600] uppercase text-white">
+                Buy Now
+              </button>
+              <button
+                className="btn-sm btn rounded-none border border-brand-accent bg-white px-4 py-2 h-12 flex items-center justify-center text-xs font-[600] uppercase text-main-text"
+                onClick={() => addToCart(id, userId as string)}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 

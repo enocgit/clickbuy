@@ -25,7 +25,7 @@ export const POST = async (request: Request) => {
     });
 
     await newUser.save();
-    return NextResponse.json({"message": "Your account has been successfully created"}, { status: 201 })
+    return NextResponse.json({"message": "Successfully registered."}, { status: 201 })
     // return new NextResponse(JSON.stringify(newUser), { status: 201 });
     return NextResponse.json(newUser, { status: 201 });
   } catch (error: any) {
