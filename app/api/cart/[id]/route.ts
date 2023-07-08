@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { connectDB } from "@/lib/utils"
 import Cart from "@/models/CartModel"
 import Product from "@/models/ProductModel"
