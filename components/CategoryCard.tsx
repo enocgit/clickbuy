@@ -6,12 +6,13 @@ type Props = {
   alt: string;
   image: string;
   name: string;
+  query: string;
 };
 
-const CategoryCard = ({ href, image, name, alt }: Props) => {
+const CategoryCard = ({ href, image, name, alt, query }: Props) => {
   return (
     <div className="flex flex-col items-center gap-4">
-      <Link href={`/categories/${href}`}>
+      <Link href={`/categories/${href}?category=${query}`}>
         <div className="relative h-52 w-52 border-[6px] border-neutral-100 bg-white lg:h-60 lg:w-60 flex items-center justify-center">
           <Image
             src={`/categories/${image}`}

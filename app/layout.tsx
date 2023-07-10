@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { DrawerProvider } from "@/contexts/DrawerContext";
 import { QueryProvider } from "@/contexts/QueryProvider";
+import {CategoryProvider} from "@/contexts/CategoryProvider";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
@@ -24,8 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className}>
-        <QueryProvider>
           <ThemeProvider>
+            <CategoryProvider>
             <DrawerProvider>
               <AuthProvider>
                 <div className="dark:bg-neutral-900 dark:text-white">
@@ -35,8 +36,8 @@ export default function RootLayout({
                 </div>
               </AuthProvider>
             </DrawerProvider>
+            </CategoryProvider>
           </ThemeProvider>
-        </QueryProvider>
       </body>
     </html>
   );

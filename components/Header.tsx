@@ -1,6 +1,6 @@
 // @ts-nocheck
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { signOut, useSession } from "next-auth/react";
 import useSWR from "swr";
 import { ShoppingCart } from "lucide-react";
@@ -11,10 +11,27 @@ import Drawer from "./Drawer";
 import { ThemeContext } from "@/contexts/ThemeProvider";
 import baseUrl from "@/baseUrl/baseUrl";
 import { DrawerContext } from "@/contexts/DrawerContext";
+import { CategoryContext } from "@/contexts/CategoryProvider";
+import { useSearchParams } from "next/navigation";
 
 type Props = {};
 
+const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json());
+
 const Header = (props: Props) => {
+ 
+  const searchParams = useSearchParams()
+  const categoryParam = searchParams.getAll("category");
+  const category = categoryParam ? decodeURIComponent(categoryParam) : null;
+
+  const { addCategory, categoryList } = useContext(CategoryContext)
+  
+
+  useEffect(() => {
+    addCategory(category)
+    console.log(categoryList)
+  }, [categoryList, category, addCategory])
+
   const session = useSession();
   const username = session?.data?.user?.name;
   const userID = session?.data?.user?.email;
@@ -22,7 +39,6 @@ const Header = (props: Props) => {
   const { lightIcon, toggleIcon } = useContext(ThemeContext);
   const [display, setDisplay] = useState<boolean>(false);
 
-  const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json());
 
   const { data, error } = useSWR(
     `${baseUrl}/api/cart?userID=${userID}`,
@@ -76,7 +92,14 @@ const Header = (props: Props) => {
               <details className="">
                 <summary className="">Categories</summary>
                 <ul className="p-2 dark:bg-neutral-800 dark:text-white">
-                  <li>
+                  {categoryList?.map((category) => (
+                    <li key={category}>
+                      <Link href="" className="dark:text-white">
+                        {category}
+                      </Link>
+                    </li>
+                  ))}
+                  {/* <li>
                     <Link href="" className="dark:text-white">
                       Electronics
                     </Link>
@@ -85,7 +108,7 @@ const Header = (props: Props) => {
                     <Link href="" className="dark:text-white">
                       Games
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link href="/categories" className="dark:text-white">
                       View all

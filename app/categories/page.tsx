@@ -32,6 +32,7 @@ const Categories = async (props: Props) => {
               href={category._id}
               alt={category.image}
               name={category.name}
+              query={category.name}
               image={category.image}
             />
           ))}

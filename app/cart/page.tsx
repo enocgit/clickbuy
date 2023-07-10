@@ -40,7 +40,7 @@ const Cart = () => {
       await axios.put(
         `${baseUrl}/api/cart/${cart_id}?product_id=${product_id}`,
         {
-          is_selected: !is_selected,
+          is_selected
         },
        
       );

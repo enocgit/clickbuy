@@ -17,7 +17,7 @@ type ProductType = {
 
 const getProducts = async (): Promise<ProductType> => {
   try {
-    const res = await fetch(`${baseUrl}/api/products`);
+    const res = await fetch(`${baseUrl}/api/products`, {cache: "force-cache"});
     if (!res.ok) {
       console.log("Couldn't fetch data");
     }
