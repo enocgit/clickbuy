@@ -60,7 +60,7 @@ const Login = (props: Props) => {
 
   const session = useSession();
   const router = useRouter();
-  session.status === "authenticated" && router.push("/");
+  session.status === "authenticated" && router.back();
 
   const registerSuccessMsg = searchParams.get('message')
   const loginErrorMsg = searchParams.get('error')
